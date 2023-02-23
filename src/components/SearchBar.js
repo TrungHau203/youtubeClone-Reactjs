@@ -12,7 +12,7 @@ const SearchBar = () => {
     const searchRef = useRef();
     const navigate = useNavigate();
     useEffect(()=>{
-    const handler = setTimeout(()=>setDeBounced(searchTerm), 900)
+    const handler = setTimeout(()=>setDeBounced(searchTerm), 600)
     return ()=>clearTimeout(handler);
     },[searchTerm])
     useEffect(() => {

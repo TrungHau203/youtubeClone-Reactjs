@@ -21,30 +21,35 @@ const Navbar = () => {
   return (
     <div className=''>
       <div className='flex justify-between px-4 max-sm:px-0 h-14 items-center fixed top-0 z-50 bg-white w-full'>
-        <div className='flex items-center '>
+        <div >
           
             
           <Tippy
-            placement='bottom'
+            interactive
             visible={visible}
+            z-zIndex={100}
             render={attrs => (
-                <div {...attrs} tabIndex="-1" className='relative w-full h-full'>
-                  <div className='relative z-60'><LongSidebar/></div>
+                <div {...attrs} tabIndex="-1" className='relative top-[-6px] w-full h-[100%+2px]'>
+                  <div className=''><LongSidebar/></div>
                   <div onClick={handleToggle} className='absolute z-55 top-0 left-0 z-[-1] bg-slate-50 w-[100vw] h-full' style={{backgroundColor:'rgba(0, 0, 0, 0.5)'}}></div>
                 </div>
             )}
             >
-            <button className='p-2 hover:rounded-[50%] hover:bg-slate-200' onClick={handleToggle}>
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">
-                <path fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
-              </svg>
-            </button>    
+            <div className='flex items-center'>
+
+              <button className='p-2 hover:rounded-[50%] hover:bg-slate-200 relative z-10000 top-0' onClick={handleToggle}>
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" className="w-6 h-6">
+                  <path fillRule="evenodd" d="M2 4.75A.75.75 0 012.75 4h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 4.75zM2 10a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75A.75.75 0 012 10zm0 5.25a.75.75 0 01.75-.75h14.5a.75.75 0 010 1.5H2.75a.75.75 0 01-.75-.75z" clipRule="evenodd" />
+                </svg>
+              </button>   
+              <Link to="/" className='p-3.5 max-sm:p-0'>
+                <img className='w-24 h-5' src={logo}/>
+              </Link>
+              <span className="text-[10px] relative text-slate-500 top-[-10px] left-[-20px] max-sm:hidden">VN</span> 
+            </div>
           </Tippy>  
           
-          <Link to="/" className='p-3.5 max-sm:p-0'>
-            <img className='w-24 h-5' src={logo}/>
-          </Link>
-          <span className="text-[10px] relative text-slate-500 top-[-10px] left-[-20px] max-sm:hidden">VN</span>
+          
         </div>
         <div className="flex">
           <SearchBar/>

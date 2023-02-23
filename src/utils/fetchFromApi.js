@@ -27,6 +27,6 @@ const KEY7 = 'AIzaSyCvCF_iqiDLYrwuVRYrRciNFt6k7713LLw';
 // };
 
 export const fetchFromAPI = async (url)=>{
-   const {data} = await axios.get(`${BASE_URL}/${url}&key=${KEY2}`);
+   const {data} = await axios.get(`${BASE_URL}/${url}&key=${KEY}`);
    return data;
 }
