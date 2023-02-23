@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { fetchFromAPI} from '../utils/fetchFromApi'
 // import { category } from '../utils/constant'
-import { ShortSidebar, Videos , SidebarFeed, Load} from '../components';
+import { LongSidebar, ShortSidebar, Videos , SidebarFeed} from '../components';
 const Feed = () => {
     const [selectedCategory, setSelectedCategory] = useState('Tất cả');
     const [videos, setVideos] = useState([]);
@@ -17,6 +17,7 @@ const Feed = () => {
   return (
     <div className='flex mt-14'>
       <ShortSidebar/>
+      {/* <LongSidebar /> */}
       <div className="min-w-[calc(100%-70px)] max-sm:pl-0 pl-24">
         <SidebarFeed selectedCategory={selectedCategory} setSelectedCategory={setSelectedCategory} />
         <div className="">

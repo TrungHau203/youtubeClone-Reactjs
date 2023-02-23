@@ -35,11 +35,11 @@ const ChannelCard = ({video,channelFeed}) => {
       <div className='flex justify-center items-center'>
         <div className='pr-44 max-sm:pr-0'>
           <h2 className=''>{video?.snippet?.title}</h2>
-          <div className={channelFeed?' ':'flex'}>
+          <div className={channelFeed?' ':'flex max-sm:block'}>
             <p className=''>{channel?.snippet?.customUrl}<span className={channelFeed?' ':'px-2'}> • </span> </p>
-            <p className=''>{numToString(channel?.statistics?.subscriberCount)} <span className={channelFeed?' ':'hidden'}> Người đăng kí </span></p>
+            <p className=''>{numToString(channel?.statistics?.subscriberCount)} <span> Người đăng kí </span></p>
           </div>
-          <p className={channelFeed&&'hidden'}>{video?.snippet?.description}</p>
+          <p className={channelFeed?'hidden':'max-sm:hidden'}>{video?.snippet?.description}</p>
         </div>
         <button className='flex justify-center bg-black text-white px-3 py-1 rounded-3xl whitespace-nowrap max-sm:hidden'>Đăng kí</button>
       </div>

@@ -30,9 +30,9 @@ const SearchBar = () => {
     // window.addEventListener("resize",widthOfSearch);
     const handleSearchTerm = function(e){
         e.preventDefault();
-        if(searchTerm){
+        if(deBounced){
             navigate(`/search/${deBounced}`)
-            console.log(searchTerm);
+            // console.log(searchTerm);
         }
     }
   return (

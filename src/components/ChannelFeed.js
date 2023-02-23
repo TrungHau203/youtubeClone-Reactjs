@@ -99,7 +99,6 @@ const handleSearchTerm = function(e){
     setSelection("Tìm kiếm")
   }
 }
-window.addEventListener('resize', setHeight) 
 // console.log(cardRef);
 function setHeight() {
   // code xử lý khi chiều rộng thay đổi
@@ -110,6 +109,7 @@ function setHeight() {
     getContaine.style.height = height.toString()+'px';
   }
 }
+window.addEventListener('resize', setHeight) 
   return (
     <div className='mt-14'>
       

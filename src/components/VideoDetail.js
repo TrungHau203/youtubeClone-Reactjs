@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react'
+import React, {useState, useEffect, useRef} from 'react'
 import {Link, useParams} from 'react-router-dom'
 import ReactPlayer from 'react-player'
 import { fetchFromAPI } from '../utils/fetchFromApi';
@@ -9,6 +9,7 @@ const VideoDetail = () => {
     const [videos, setVideos] = useState(null);
     const [channel, setchannel] = useState(null);
     const {id} = useParams();
+    const videoRef = useRef()
     useEffect(() =>{
          fetchFromAPI(`videos?part=snippet%2CcontentDetails%2Cstatistics&id=${id}`)
          .then(data=>{
@@ -107,31 +108,33 @@ const VideoDetail = () => {
         descriptionView.style.display = 'none';
       }
     }
-    // console.log(convertDescription(videoInfor?.snippet?.description));
+    
   return (
-    <div className="lg:grid lg:grid-cols-6 lg:gap-4 mt-16">
-      <div className="lg:col-span-4 ml-6 justify-between" >
+    <div ref={videoRef} className="lg:grid lg:grid-cols-6 lg:gap-4 mt-16">
+      <div className="lg:col-span-4 lg:ml-6 justify-between" >
         {/* title */}
-        <div className=''>
-          <ReactPlayer url={`https:www.youtube.com/watch?v=${id}`} width='100%' height='80vh' controls/>
+        <div>
+          <div className='h-[80vh] max-lg:h-[50vh] max-sm:h-[30vh]'>
+            <ReactPlayer  url={`https:www.youtube.com/watch?v=${id}`} width='100%' height="100%" controls/>
+          </div>
           <h2 className='text-xl'>{videoInfor?.snippet?.title}</h2>
         </div>
         {/* Top row */}
-        <div className="flex justify-between">
-          <div className="flex items-center">
-            <div className="lg:flex lg:items-center">
+        <div className="flex max-sm:block justify-between">
+          <div className="flex  items-center">
+            <div className="flex items-center">
               <Link  to={`/channeldetail/${videoInfor?.snippet.channelId}`} className='mr-2'><img src={channel?.snippet.thumbnails.default.url} className="rounded-full w-10" /></Link>
               <div className='mr-3'>
-                <h3 className=''>
+                <h3 className='text-sm'>
                   {channel?.snippet?.title}
                   {/* <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                     <path strokeLinecap="round" strokeLinejoin="round" d="M9 12.75L11.25 15 15 9.75M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg> */}
                 </h3>
-                <p className=''>{numToString(channel?.statistics.subscriberCount)} Người đăng kí</p>
+                <p className='text-sm text-slate-500'>{numToString(channel?.statistics.subscriberCount)} người đăng ký</p>
               </div>
             </div>
-            <button className="mr-5 px-4 bg-black text-white rounded-3xl h-10">Đăng Kí</button>
+            <button className="mr-5 px-4 bg-black text-white rounded-3xl h-10 whitespace-nowrap">Đăng Kí</button>
           </div>
           <div className="flex items-center">
             <button className="flex bg-zinc-100 p-2 pr-4 rounded-l-3xl">
@@ -149,7 +152,7 @@ const VideoDetail = () => {
               <svg xmlns="http://www.w3.org/2000/svg " fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
                 <path strokeLinecap="round" strokeLinejoin="round" d="M7.217 10.907a2.25 2.25 0 100 2.186m0-2.186c.18.324.283.696.283 1.093s-.103.77-.283 1.093m0-2.186l9.566-5.314m-9.566 7.5l9.566 5.314m0 0a2.25 2.25 0 103.935 2.186 2.25 2.25 0 00-3.935-2.186zm0-12.814a2.25 2.25 0 103.933-2.185 2.25 2.25 0 00-3.933 2.185z" />
               </svg>
-              <p className="px-2 ">Chia sẻ</p>
+              <p className="px-2 whitespace-nowrap">Chia sẻ</p>
             </button>
             <button className="flex bg-zinc-100 p-2 rounded-3xl mr-2 max-sm:hidden">
               <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.5} stroke="currentColor" className="w-6 h-6">
@@ -172,7 +175,7 @@ const VideoDetail = () => {
           </div>
           {/* description */}
           <div className=''>
-            <div className=''>
+            <div className='text-sm'>
               <h2>{videoInfor?.snippet?.title}</h2>
               <button className='block read-more' onClick={toggleReadMore}>Hiện thêm</button>
               <div className='hidden description-view'>
@@ -195,7 +198,7 @@ const VideoDetail = () => {
           </div>
         </div>
       </div>
-      <div className='lg:col-span-2 max-lg:ml-4'>
+      <div className='lg:col-span-2 max-lg:ml-4 max-sm:ml-0'>
         <Videos videos={videos} direction_row />
       </div>
     </div>

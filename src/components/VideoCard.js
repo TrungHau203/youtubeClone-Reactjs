@@ -52,28 +52,28 @@ const VideoCard = ({video, direction_row,direction_search}) => {
   return (
     <div className={(direction_row&&'mb-2 mx-2')||(direction_search&&'mb-2 mx-2')}>
         <Link to={`/videodetail/${videoId}`} className={(direction_row||direction_search)&&'flex'}>
-            <img className={(direction_row&&'w-44')||(direction_search&&'max-w-[360px] rounded-2xl mr-4 max-sm:max-w-[240px] max-sm:h-[160px]')||'rounded-2xl '} src={video?.snippet?.thumbnails?.high?.url}/>
+            <img className={(direction_row&&'w-44 rounded-md')||(direction_search&&'max-w-[360px] rounded-2xl mr-4 max-sm:max-w-[240px] max-sm:rounded-none max-sm:mr-0 max-sm:h-[160px]')||'rounded-2xl '} src={video?.snippet?.thumbnails?.high?.url}/>
             <div className='flex mt-2'>
               <div className={(direction_row||direction_search)&&'hidden'}>
                 <Link to={`/channeldetail/${video?.snippet?.channelId}`}>
-                  <img src={channel?.snippet?.thumbnails?.default?.url} className='w-14 rounded-full max-w-[50px] '/>
+                  <img src={channel?.snippet?.thumbnails?.default?.url} className='w-14 rounded-full max-w-[50px] max-sm:max-w-[32px] '/>
                 </Link>
               </div>
-              <div className=''>
+              <div className={direction_row&&'ml-2'}>
                 <h2 className='text-ellipsis overflow-hidden leading-5 max-h-10 text-base font-normal'>{video.snippet?.title}</h2>
-                <div className={(direction_search)?'flex':'hidden'}>
-                  <p className='text-xs '>{numToString(statistics?.statistics?.viewCount)} Lượt xem • </p>
-                  <p className='text-xs ml-1'> {timeSince(msPublished)} Trước</p>
+                <div className={(direction_search)?'flex max-sm:block':'hidden'}>
+                  <p className='text-xs '>{numToString(statistics?.statistics?.viewCount)} Lượt xem <span className='m-1 max-sm:hidden'>•</span> </p>
+                  <p className='text-xs lg:ml-1'> {timeSince(msPublished)} Trước</p>
                 </div>
                 <div className={(direction_search)?'flex':''}>
                   <Link to={`/channeldetail/${video?.snippet?.channelId}`} className={direction_search?'':'hidden'}>
-                    <img src={channel?.snippet?.thumbnails?.default?.url} className='w-14 rounded-full max-w-[50px]'/>
+                    <img src={channel?.snippet?.thumbnails?.default?.url} className='w-14 rounded-full max-w-[50px] max-sm:max-w-[32px]'/>
                   </Link>
                   <Link className={direction_search?'flex items-center justify-center':'inline-block'} to={`/channeldetail/${video?.snippet?.channelId}`} >
                       <p className='text-xs  my-2'>{video?.snippet?.channelTitle}</p>
                   </Link>
                 </div>
-                <p className={(direction_search)?'flex':'hidden'} >{video.snippet.description}</p>
+                <p className={(direction_search)?'flex max-sm:hidden':'hidden'} >{video.snippet.description}</p>
                 <div className={(direction_search)?'hidden':'flex'}>
                   <p className='text-xs '>{numToString(statistics?.statistics?.viewCount)} Lượt xem • </p>
                   <p className='text-xs ml-1'> {timeSince(msPublished)} Trước</p>
