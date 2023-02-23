@@ -6,7 +6,7 @@ import { logo } from '../img';
 const LongSidebar = () => {
   const [isActive, setIsActive] = useState('home')
   return (
-    <div className='overflow-hidden overflow-y-auto w-60 h-[calc(92vh_-_14px)] bg-white'>
+    <div className='overflow-hidden overflow-y-auto w-60 h-[89vh] bg-white'>
       <div className='px-3.5  border-b border-b-slate-300 pb-4'>  
         <Link to='/' className='flex px-2 py-2 hover:bg-slate-200 rounded-xl'  onClick={()=>setIsActive('home')}>
           {
